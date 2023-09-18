@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gongji">
+
+    <!-- 글 추가 -->
+    <insert id="insert" parameterType="musicq.vo.GongjiVO">
+        INSERT INTO gongji (G_NO, A_ID, G_TITLE, G_CONTENT, G_DT)
+        VALUES (gongji_SEQ.NEXTVAL, #{aId}, #{gTitle}, #{gContent}, SYSDATE)
+    </insert>
+
+    <!-- 글 조회 -->
+    <select id="getAll" resultType="musicq.vo.GongjiVO">
+        SELECT * FROM gongji ORDER BY G_NO DESC
+    </select>
+
+    <!-- 글 삭제 -->
+    <delete id="delete">
+        DELETE FROM gongji WHERE G_NO = #{gNo}
+    </delete>
+
+    <!-- 글 상세조회 -->
+    <select id="detail" parameterType="String" resultType="musicq.vo.GongjiVO">
+        SELECT G_NO AS gNo,
+               A_ID AS aId,
+               G_TITLE AS gTitle,
+               G_CONTENT AS gContent,
+               G_DT AS gDt
+        FROM gongji
+        WHERE G_NO = #{gNo}
+    </select>
+
+    <!-- 글 수정 -->
+    <update id="update" parameterType="musicq.vo.GongjiVO">
+        UPDATE gongji SET
+         G_CONTENT = #{gContent}
+        ,G_TITLE=#{gTitle}
+        ,G_DT=sysdate
+        WHERE G_NO = #{gNo}
+    </update>
+
+    <!-- 게시글 목록 조회 쿼리 -->
+    <select id="boardList" parameterType="map" resultType="musicq.vo.GongjiVO">
+        SELECT A.* FROM (
+            SELECT ROWNUM AS RNUM, B.* FROM (
+                SELECT * FROM gongji
+                ORDER BY G_NO DESC
+            ) B
+            <![CDATA[
+            WHERE ROWNUM <= #{end}
+            ]]>
+        ) A
+        WHERE A.RNUM >= #{start}
+    </select>
+
+    <!-- 전체 게시글 수 조회 -->
+    <select id="totalCnt" resultType="int">
+        SELECT COUNT(*) FROM gongji
+    </select>
+
+</mapper>

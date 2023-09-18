@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="music">
+
+	<!-- 음악등록 -->
+	<insert id="insert" parameterType="musicq.vo.MusicVO">
+
+		insert into music
+		(M_CD,
+		M_RELE_DT, M_REGI_DT, M_NM, M_SINGER, M_GENRE,
+		M_COUNTRY, M_ALBUM,
+		M_LYRIC1, M_SIMLAR_CD,
+		, M_PLACE )
+		values (
+		#{mCd},#{mReleDt},#{mNm},#{mSinger},#{mGenre},#{mCountry},#{mAlbum},#{mLyrIc1},#{mSimlarCd},#{mPlace}
+		)
+
+	</insert>
+
+	<!-- 조회수증가 -->
+	<update id="updateCnt" parameterType="musicq.vo.MusicVO">
+
+		UPDATE music
+		set
+		m_month_cnt
+		= m_month_cnt + 1
+		,m_week_cnt = m_week_cnt + 1
+		,m_daily_cnt =
+		m_daily_cnt + 1
+		where m_cd = #{mCd}
+
+	</update>
+
+	<!-- 조회수 큰값 10개 가져오는 쿼리 -->
+	<select id="selectRank" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 10
+
+	</select>
+
+	<!-- 날씨로 음악 가져오기 -->
+	<select id="selectWeatherMusic" resultType="musicq.vo.MusicVO"
+		parameterType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm
+		FROM (
+		SELECT m_cd, m_nm
+		FROM
+		music
+		WHERE m_weather_music = #{mWeatherMusic}
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 6
+	</select>
+	
+	<delete id="deletecnt" parameterType="String">
+
+		DELETE FROM music
+		WHERE M_NM
+		= #{mNm}
+
+	</delete>
+
+	<!-- 동영상주소로 이미지 경로 가져오는 쿼리 -->
+	<select id="selectImgPath" resultType="String"
+		parameterType="musicq.vo.MusicVO">
+
+		SELECT DISTINCT msq_img.img_path FROM music
+		INNER JOIN
+		m_img ON music.m_cd=m_img.m_cd
+		INNER JOIN msq_img ON
+		m_img.m_img_cd=msq_img.mgq_img_cd
+		WHERE music.m_cd = #{m_cd}
+	</select>
+
+
+	<select id="selectImgAll" parameterType="musicq.vo.MsqImgVO">
+		select * from msq_img
+	</select>
+
+	<!--인기 한국 음악 탑 10곡 -->
+	<select id="selectKorMusic" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm,
+		m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY =
+		'국내'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 10
+
+	</select>
+
+	<!--인기 외국 음악 탑 10곡 -->
+	<select id="selectNoKorMusic" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm,
+		m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY =
+		'해외'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 10
+
+	</select>
+
+<!-- 국내 발라드 탑 5  -->
+	<select id="ballade" resultType="musicq.vo.MusicVO">
+
+		SELECT m_cd, m_nm, m_singer
+		FROM
+		(
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '국내' and
+		M_GENRE='발라드'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+
+	</select>
+
+<!-- 국내 댄스곡 탑 5 -->
+	<select id="dance" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '국내' and
+		M_GENRE='댄스'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+
+<!-- 국내 랩 탑 5  -->
+	<select id="krrap" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '국내' and LIKE
+		'랩/%'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+
+<!-- 국내 인디음악 탑 5  -->
+	<select id="Indie" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '국내' and
+		M_GENRE='인디음악'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+
+<!-- 해외 팝 탑 5 -->
+	<select id="pop" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '해외' and
+		M_GENRE='POP'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+
+	<!-- 해외 rb 탑 5 -->
+	<select id="rb" resultType="musicq.vo.MusicVO">
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '해외' and
+		M_GENRE LIKE 'R%'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+	
+	<select id="selectAll" resultType="musicq.vo.MusicVO">
+		SELECT * from MUSIC
+	</select>
+	
+
+	
+	<!-- 해외 랩 탑 5 -->
+	<select id="rap" resultType="musicq.vo.MusicVO"> 
+		SELECT m_cd, m_nm, m_singer
+		FROM (
+		SELECT m_cd, m_nm, m_singer
+		FROM music
+		WHERE M_COUNTRY = '해외'and LIKE
+		'랩/%'
+		ORDER BY m_daily_cnt DESC
+		)
+		WHERE ROWNUM &lt;= 5
+	</select>
+	
+	<!-- ★★★ 여기부터는 검색할 때 씀 ★★★  -->
+	
+	<!-- 테이블의 모든 자료 조회 -->
+	<select id="musicAll" resultType="musicq.vo.MusicVO">
+		SELECT * from MUSIC
+	</select>
+
+	<!-- 사용자가 입력한 값에 따른 자료 조회  -->
+	<resultMap type="musicq.vo.MusicVO" id="musicMap">
+	
+		<result property="mCd" column="M_CD"/>
+		<result property="mNm" column="M_NM"/>
+		<result property="mSinger" column="M_SINGER"/>
+		<result property="mGenre" column="M_GENRE"/>
+		<result property="mCountry" column="M_COUNTRY"/>
+	</resultMap>
+	
+	<select id="keyword" resultMap="musicMap" >
+		SELECT M_NM, M_CD, M_SINGER, M_GENRE, M_COUNTRY
+		FROM MUSIC
+		WHERE M_NM LIKE '%' || #{mNm} || '%'
+			and M_CD LIKE '%' || #{mCd} || '%'
+			and M_SINGER LIKE '%' || #{mSinger} || '%'
+			and M_GENRE LIKE '%' || #{mGenre} || '%'
+			and M_COUNTRY LIKE '%' || #{mCountry} || '%'
+	</select>
+
+	<!-- <select id="keyword" resultMap="musicMap" >
+		SELECT M_NM, M_SINGER, M_GENRE, M_COUNTRY
+		FROM MUSIC
+		WHERE M_NM LIKE '%' || #{mNm} || '%'
+			OR M_SINGER LIKE '%' || #{mSinger} || '%'
+			OR M_GENRE LIKE '%' || #{mGenre} || '%'
+			OR M_COUNTRY LIKE '%' || #{mCountry} || '%'
+	</select> -->
+
+
+</mapper>

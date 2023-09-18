@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<properties resource="db.properties" />
+
+	<settings>
+
+
+<setting name="mapUnderscoreToCamelCase" value="true"/> 
+
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="musicq.vo.MemberVO" alias="memVO"/>
+		<typeAlias type="musicq.vo.DjPageVO" alias="djpVO"/>
+		<typeAlias type="musicq.vo.TicketVO" alias="TicketVO"/>
+		<typeAlias type="musicq.vo.DjpCmntVO" alias="CmntVO"/>
+	</typeAliases>
+	
+	<!-- 
+		POOLED : MyBatis 자체 DB 커넥션을 사용한다.
+				  미리 DB커넥션 객체를 생성해 두고 요청하면 즉시 반환한다.
+				  데이터베이스 연결을 초기화하고 사용자를 인증하는 과정이 없기 때문에 속도가 빠르다.
+				 *connection의 연결 수가 늘어나면 차지하는 메모리의 수가 증가함
+ 	-->
+ 
+	<environments default="dev">
+		<environment id="dev">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+				<!--활성화된 최대 커넥션 수 -->
+				<property name="poolMaximumActiveConnections" value="3"/>
+				<!--유휴상태에서의 최대 커넥션 수 -->
+				<property name="poolMaximumIdleConnections" value="3"/>
+			</dataSource>		
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/djp.xml"/>	
+		<mapper resource="mapper/music.xml"/>
+		<mapper resource="mapper/coupon.xml"/>	
+		<mapper resource="mapper/ticket.xml"/>
+		<mapper resource="mapper/qnaBoard.xml"/>
+		<mapper resource="mapper/searchMusic.xml"/>
+		<mapper resource="mapper/gongji.xml"/>		
+		<mapper resource="mapper/djpComment.xml"/>
+
+		<mapper resource="mapper/playList.xml"/>
+
+
+		<mapper resource="mapper/themaMusic.xml"/>
+
+	
+
+	</mappers>
+	
+</configuration>

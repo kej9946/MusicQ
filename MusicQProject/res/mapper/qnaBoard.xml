@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	
+	<!-- 글 추가  -->
+	  <insert id="insert" parameterType="musicq.vo.QnaVO">
+  		insert into QNA(QNA_NO, MEM_ID, QNA_TITLE, QNA_CN, QNA_DT)
+  			   values(QNA_SEQ.NEXTVAL, #{memId}, #{qnaTitle}, #{qnaCn}, sysdate)
+  	  </insert>
+  	  
+  	<!-- 글 조회  -->
+  	 <select id="getAll" resultType="musicq.vo.QnaVO">
+  		SELECT * FROM QNA ORDER BY #{qnaNo} DESC
+  	</select>
+
+  	
+  	<!-- 글 삭제  -->
+  	<delete id="delete">
+  		delete from QNA where QNA_TITLE = #{qnaTitle}
+  	</delete>
+  	
+  	
+  	<!-- 글 상세조회  -->
+ 	<select id="detail" parameterType="String" resultType="musicq.vo.QnaVO">
+		select QNA_NO as qnaNo
+			  ,MEM_ID as memId
+		      ,QNA_TITLE as qnaTitle
+		      ,QNA_CN as qnaCn
+		      ,QNA_DT as qnaDt
+		      ,QNA_REPLY as qnaReply
+		 from QNA
+		 where QNA_TITLE = #{QNA_TITLE}
+	</select>
+   		
+   	
+   	<!-- 글 수정  -->
+  <update id="update" parameterType="musicq.vo.QnaVO">
+    UPDATE QNA
+    SET QNA_CN = #{qnaCn}, QNA_REPLY = #{qnaReply}
+    WHERE QNA_TITLE = #{qnaTitle}
+</update>
+  	 
+  	 <!-- 게시글 목록 조회 쿼리  -->
+  	 <select id="boardList" parameterType="map" resultType="musicq.vo.QnaVO">
+		select A.* from(
+  			select ROWNUM as RNUM, B.* from(
+  				select * from QNA
+				order by QNA_NO DESC
+			)B 
+		<![CDATA[
+			where ROWNUM <= #{end}
+		)A			
+		where A.RNUM >= #{start}
+		]]>
+  	 </select>
+	
+		
+  	<!-- 전체 게시글 수 조회 -->
+  	 <select id="totalCnt" resultType="int">
+  	 select count(*) from QNA
+  	 </select>
+  	 
+
+  	 
+	
+	
+</mapper>

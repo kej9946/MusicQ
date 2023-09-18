@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="djp">
+
+	<resultMap type="musicq.vo.DjPageVO" id="djpMap">
+		<result property="memId" column="mem_id" />
+		<result property="djpNm" column="djp_nm" />
+		<result property="djpIntro" column="djp_intro" />
+		<result property="djpKeywd" column="djp_keywd" />
+		<result property="djpHit" column="djp_hit" />
+		<result property="djpImgCd" column="djp_img_cd" />
+		<result property="djpDjimgCd" column="djp_Djimg_cd" />
+		<result property="djpSns" column="djp_sns" />
+		<result property="djNm" column="dj_nm" />
+		<result property="djpGenre" column="djp_genre" />
+		<result property="djpSnsCorp" column="djp_snscorp" />
+
+	</resultMap>
+
+	<!-- DJ페이지 생성 -->
+
+	<insert id="insert" parameterType="musicq.vo.DjPageVO">
+
+		INSERT INTO dj_page (
+		mem_id,
+		djp_nm,
+		djp_intro,
+		djp_keywd,
+		djp_hit,
+		djp_img_cd,
+		djp_djimg_cd,
+		djp_sns,
+		dj_nm,
+		djp_genre,
+		djp_snscorp
+		) VALUES (
+		#{memId}, #{djpNm}, #{djpIntro}, #{djpKeywd}, #{djpHit},
+		#{djpImgCd}, #{djpDjimgCd}, #{djpSns}, #{djNm}, #{djpGenre},
+		#{djpSnsCorp}
+		)
+
+	</insert>
+
+
+	<!-- DJ페이지 수정, 회원id로 수정 -->
+	<update id="update" parameterType="musicq.vo.DjPageVO">
+		update dj_page
+		set mem_id =
+		#{memId}
+		, djp_nm = #{djpNm}
+		, djp_intro = #{djpIntro}
+		, djp_keywd =
+		#{djpKeywd}
+		, djp_hit = #{djpHit}
+		, djp_img_cd = #{djpImgCd}
+		,
+		djp_DjimgCd_cd = #{djpDjimgCd}
+		, djp_sns = #{djpSns}
+		, dj_nm = #{djNm}
+		,
+		djp_genre=#{djpGenre}
+		, djp_snscorp=#{djpSnsCorp}
+		WHERE mem_id = #{memId}
+
+	</update>
+
+	<!-- DJ페이지 삭제 -->
+	<delete id="delete">
+		delete from dj_page
+		where mem_id = #{memId}
+	</delete>
+
+
+	<!--dj페이지 전체조회 -->
+	<select id="getAllDjp" resultType="musicq.vo.DjPageVO">
+		select * from dj_page
+	</select>
+
+
+	<!--dj페이지 부분조회 -->
+	<select id="getDjp" resultType="musicq.vo.DjPageVO">
+		select *
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+
+	<!-- DJ대표사진 조회 -->
+	<select id="getDjpImg" resultType="String">
+		select djp_img_cd from dj_page where mem_id = #{memId}
+	</select>
+
+	<!-- DJ프로필사진 조회 -->
+	<select id="getDjpDjimg" resultType="String">
+		select djp_djimg_cd
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+	<!-- DJ닉네임 조회 -->
+	<select id="getDjNm" resultType="String">
+		select dj_nm
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+	
+	<!-- 페이지제목 조회 -->
+	<select id="getDjpNm" resultType="String">
+		select djp_nm
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+	<!-- DJP 제목 조회 -->
+	<select id="getDjpIntro" resultType="String">
+		select djp_intro
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+		<!-- DJP 대표장르 조회 -->
+	<select id="getDjpGenre" resultType="String">
+		select djp_genre
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+		<!-- DJP 대표키워드 조회 -->
+	<select id="getDjpkey" resultType="String">
+		select djp_keywd
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+		<!-- DJPsns 조회 -->
+	<select id="getDjpSns" resultType="String">
+		select djp_sns
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+		<!-- DJPsnscorp 조회 -->
+	<select id="getDjpSnsCorp" resultType="String">
+		select djp_snscorp
+		from dj_page
+		where mem_id = #{memId}
+	</select>
+	
+	<!-- DJP 찜 추가 -->
+	<update id="getDjpHit" parameterType="int">
+		update dj_page
+		set djpHit = djpHit + 1
+		where mem_id = #{memId}
+</update>
+<!-- DJP 찜 조회 -->
+<select id="getHitCount" resultType="int">
+  SELECT djp_hit
+  FROM djp_table
+  WHERE mem_id = #{memId}
+</select>
+
+	<!--dj페이지를 만든 회원 여부 체크(int타입 1 반환시 여/0 반환시 부) -->
+	<select id="check" resultType="int">
+		select count(*) as cnt from
+		dj_page
+		where mem_id = #{memId}
+	</select>
+
+	<!-- 검색조건 id, 페이지제목, 닉네임, 키워드, 이미지, 프로필이미지, 장르 -->
+	<select id="search" resultMap="djpMap">
+		select * from dj_page where 1=1
+
+		<if test="memId != null and memId != ''">
+			and mem_id = #{memId}
+		</if>
+
+		<if test="djpNm != null and djpNm != ''">
+			and djp_nm like '%' || #{djpNm} || '%'
+		</if>
+
+		<if test="djpKeywd != null and djpKeywd != ''">
+			and djp_keywd like '%' || #{djpKeywd} || '%'
+		</if>
+
+		<if test="djpImgCd != null and djpImgCd != ''">
+			and djp_img_cd like '%' || #{djpImgCd} || '%'
+		</if>
+
+		<if test="djpDjimgCd != null and djpDjimgCd != ''">
+			and djp_Djimg_cd like '%' || #{djpDjimgCd} || '%'
+		</if>
+
+		<if test="djNm != null and djNm != ''">
+			and dj_nm like '%' || #{djNm} || '%'
+		</if>
+
+		<if test="djpGenre != null and djpGenre != ''">
+			and djp_genre like '%' || #{djpGenre} || '%'
+		</if>
+
+		<if test="djpSnsCorp != null and djpSnsCorp != ''">
+			and djp_snscorp like '%' || #{djpSnsCorp} || '%'
+		</if>
+
+
+	</select>
+
+
+</mapper>
+	

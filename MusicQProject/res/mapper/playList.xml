@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="playList">
+
+
+<!-- 플레이리스트 음악등록 -->
+	<insert id="insert"  parameterType="musicq.vo.MemPlaylistVO">
+		INSERT INTO mem_playlist(mem_playlist_cd, mem_id, m_cd)VALUES( 
+		MEM_PLAYLIST_SEQ.nextval,#{memId},#{mCd})
+	</insert>
+	
+	<!-- 플레이리스트 음악 삭제 -->
+	<delete id="delete" parameterType="musicq.vo.MemPlaylistVO">
+	delete from mem_playlist where m_cd = #{mCd}
+	</delete>
+
+	<!-- 플레이리스트에 있는 음악 보기 -->
+	<select id="selectListAll" resultType="musicq.vo.MemPlaylistVO">
+	select * from mem_playList 
+	</select>
+
+<!-- 현재 id의 플레이리스트에 있는 곡 가져오기 -->
+<select id = "selectListId" resultType="musicq.vo.MusicVO" parameterType="String">
+
+SELECT DISTINCT music.m_cd, music.m_singer, music.m_nm, music.m_genre, music.m_country 
+FROM music 
+LEFT JOIN MEM_PLAYLIST ON music.m_cd = MEM_PLAYLIST.m_cd 
+WHERE mem_playlist.mem_id = #{memId}
+
+
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

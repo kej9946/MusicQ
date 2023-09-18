@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmnt">
+	
+	<!-- 글 추가  -->
+	<insert id="insertCmnt" parameterType="musicq.vo.DjpCmntVO">
+    	INSERT INTO DJP_CMNT (
+      		CMNT_NO,
+      		MEM_ID,
+      		DJ_ID,
+      		CMNT_CN,
+      		CMNT_DT
+    	) VALUES (
+      		cmnt_no_seq.NEXTVAL,
+      		#{memId},
+      		#{djId},
+      		#{cmntCn},
+      		sysdate
+    	)
+  	</insert>
+  	  
+  	<!-- 전체 글 조회  -->
+  	<select id="getAllCmnt" resultType="musicq.vo.DjpCmntVO">
+    	SELECT * FROM DJP_CMNT ORDER BY CMNT_DT DESC
+  	</select>
+  	
+  	<!-- 자신의 페이지 댓글게시판 조회 추가  -->
+  	<select id="getDjpAllCmnt" resultType="musicq.vo.DjpCmntVO">
+    		SELECT * FROM DJP_CMNT WHERE DJ_ID = #{djId} ORDER BY CMNT_DT DESC
+  	</select>
+  	
+  <!-- 내가 작성한 댓글 조회 추가  -->
+  	<select id="getDjpCmnt" resultType="musicq.vo.DjpCmntVO">
+    		SELECT * FROM DJP_CMNT WHERE mem_id = #{memId} AND
+    		dj_id = #{djId} ORDER BY CMNT_DT DESC
+  	</select>
+
+
+    <!-- 글 삭제  -->
+  	<delete id="deleteCmnt" >
+    	delete from DJP_CMNT where CMNT_CN = #{cmntCn} 
+  	</delete>
+  
+  	
+  	
+  	<!-- 글 수정  -->
+  	<update id="updateCmnt" parameterType="musicq.vo.DjpCmntVO">
+    	update DJP_CMNT set CMNT_CN = #{cmntCn} where CMNT_NO = #{cmntNo}
+  	</update>
+   
+  	 
+  	<!-- 게시글 목록 조회 쿼리  -->
+  	<select id="cmntList" parameterType="map" resultType="musicq.vo.DjpCmntVO">
+		select A.* from (
+			select ROWNUM as RNUM, B.* from (
+				select * from DJP_CMNT order by CMNT_NO DESC
+			) B
+			<![CDATA[
+			where ROWNUM <= #{end}
+			]]>
+		) A
+		where A.RNUM >= #{start}
+  	</select>
+  	
+  	
+  		
+  	<!-- 전체 게시글 수 조회 -->
+  	 <select id="totalCnt" resultType="int">
+  	 select count(*) from djp_cmnt
+  	 </select>
+  	 
+	
+</mapper>

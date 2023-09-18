@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 등급 안내</title>
+</head>
+<style>
+
+h2{
+
+    width: 500px;
+    margin: auto;
+    margin-top: 150px;
+    }
+
+table.grade {
+    margin: auto;
+    margin-top: 80px;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;	
+}
+
+table.grade thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #e7708d;
+	margin: 20px 10px;
+}
+
+table.grade tbody th {
+	width: 150px;
+	padding: 10px;
+}
+
+table.grade td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+table.grade .even {
+	background: #fdf3f5;
+}
+</style>
+<body>
+<div="all">
+	<h2>▷▷ 뮤직큐 회원 등급◁◁</h2>
+	<table class=grade>
+		<thead>
+			<tr>
+				<th scope="cols">등급</th>
+				<th scope="cols">이용권 사용기간</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">MVIP</th>
+				<td>5년이상</td>
+			</tr>
+			<tr>
+				<th scope="row" class="even">VIP</th>
+				<td class="even">3년이상</td>
+			</tr>
+			<tr>
+				<th scope="row">GOLD</th>
+				<td>1년이상</td>
+			</tr>
+			<tr>
+				<th scope="row" class="even">SILVER</th>
+				<td class="even">6개월이상</td>
+			</tr>
+			<tr>
+				<th scope="row">GREEN</th>
+				<td>3개월이상</td>
+			</tr>
+			<tr>
+				<th scope="row" class="even">일반</th>
+				<td class="even">그 외</td>
+			</tr>
+		</body>
+	</table>
+	</div>
+
+</body>
+</html>

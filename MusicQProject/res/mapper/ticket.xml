@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ticket">
+
+
+	<select id="selectAllTicket"  resultType="musicq.vo.TicketVO"  parameterType="String">
+
+<!-- 		SELECT TK_CD, TK_NM, TK_PRICE, TO_CHAR(TK_PAY_DT, 'YYYY-MM-DD') AS TK_PAY_DT -->
+<!-- 		FROM TICKET -->
+<!-- 		WHERE MEM_ID =#{memId} -->
+
+
+SELECT TK_CD, TK_NM, TK_PRICE, TK_PAY_DT
+FROM TICKET
+WHERE MEM_ID = #{memId}
+
+
+	</select>
+
+
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+
+	<resultMap type="musicq.vo.CouponVO" id="couponMap">
+		<result property="cpCd" column="cp_cd" />
+		<result property="cpBgn" column="cp_bgn" />
+		<result property="cpEnd" column="cp_end" />
+		<result property="cpDcrate" column="cp_dcrate" />
+	</resultMap>
+
+	<select id="selectAllCoupon" parameterType="String" resultType="hashmap">
+
+<!-- 		SELECT A.CP_CD,A.CP_BGN,A.CP_END,a.cp_dcrate -->
+<!-- 		FROM COUPON A, COUPON_BOX B, MEMBER C -->
+<!-- 		WHERE C.MEM_ID= B.MEM_ID -->
+<!-- 		AND A.CP_CD=B.CP_CD -->
+<!-- 		AND C.MEM_ID = #{memId} -->
+
+		SELECT A.CP_CD, A.CP_BGN AS CP_BGN, A.CP_END AS CP_END, a.cp_dcrate
+		FROM COUPON A, COUPON_BOX B, MEMBER C
+		WHERE C.MEM_ID = B.MEM_ID
+		AND A.CP_CD = B.CP_CD
+		AND C.MEM_ID = #{memId}
+
+	</select>
+
+</mapper>

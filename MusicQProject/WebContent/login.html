@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 부트스트랩 사용을 위한 외부파일 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- 부트스트랩 사용을 위한 외부파일 -->
+<style>
+.container-fluid {
+  width: 50%;
+  margin-top: 10%;
+}
+.row {
+  border: 4px solid lightgray;
+  padding: 10%;
+}
+.join {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+	
+<form method="post" action="/MusicQProject/Login">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<input id="userId" name="userId" class="form-control">
+			</div>			
+			<div class="col-xs-12">
+				<input type="password" id="userPw" name="userPw" class="form-control">
+			</div>			
+			<div class="col-xs-12">
+				<input type="submit" id="loginForm" value="로그인(submit)" class="btn btn-primary col-xs-12">
+				<a href="join.jsp">회원가입</a><br>
+				<a href="findId.jsp">아이디를 잊으셨나요?</a>
+			</div>			
+			</div>			
+		</div>
+</form>
+
+</body>
+</html>

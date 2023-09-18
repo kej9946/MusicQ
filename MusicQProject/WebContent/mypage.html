@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>뮤직큐</title>
+
+</head>
+<style>
+
+.all{
+display : flex;
+justify-content : space-between;
+}
+
+.hi{
+display : flex;
+}
+
+#wrap{
+	/*border-style: outset;*/
+	border : solid;
+	border-color : white white 	#1fc600 white;
+	height : 200px;
+}
+
+#nav{
+	float : right;
+	position : relative;
+	top : -50px;
+	
+}
+
+#mp{
+	position : relative;
+	left : 25px;
+	
+}
+
+#headphone{
+	position : relative;
+	top : 300px;
+	left : 25px;
+	
+}
+#profile{
+	border-radius: 70%;
+}
+.navigation_list {
+	float: left;
+	width: 142px;
+	line-height: 40px;
+	text-align: center;
+	list-style-type: none;
+}
+
+.navigation_link {
+	font-size: 16px;
+	font-weight: bold;
+	color: black;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.navigation_list:hover .sub_menu {
+	display: block;
+}
+
+.navigation_link:hover {
+	color: #1fc600;
+}
+.mypage {
+
+    display: flex;
+    height: 600px;
+    width : 500px;
+   
+}
+
+.mypage>* {
+    border-radius: 40px;
+    margin-right: 10px;
+}
+
+#left {
+    flex: 0.8;
+    background: #1fc600;
+    padding: 20px;
+    width : 200px;
+    height : 600px;
+}
+
+#left>ul {
+    padding-left: 0px;
+    border-radius: 5px;
+}
+
+#left>ul>li {
+    list-style: none;
+    padding: 10px;
+
+}
+
+#left>ul>li>a {
+    text-decoration: none;
+    color: white;
+    padding-left: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+#right {
+	display : flex;
+    flex: 0.8;
+    flex-direction : column;
+    margin-right: 0;
+    padding: 20px;
+    position : relative;
+    left : 250px;
+    top : 40px;
+    
+}
+
+#main{
+	position : relative;
+	left : 160px;
+	width : 450px;
+	height : 200px;
+}
+
+.music{
+    height: 230px;
+    width : 500px;
+    background : #e5e6eb;
+    border-radius: 40px;
+}
+.coupon{
+	position : relative;
+	top : 50px;
+    height: 230px;                                                        
+    width : 500px;
+    background : #e5e6eb;
+    border-radius: 40px;
+}
+.grade{
+	position : relative;
+	right : -100px;
+	top : 55px;
+    height: 230px;
+    width : 500px;
+    background : #e5e6eb;
+    border-radius: 40px;
+
+}
+.ticket{
+	position : relative;
+	right : -100px;
+	top : 125px;
+    height: 230px;
+    width : 500px;
+    background : #e5e6eb;
+    border-radius: 40px;
+}
+
+
+</style>
+
+<body>
+
+	<div id="wrap">
+		<!-- 이벤트일 경우 event_gnb 추가 -->
+
+		<div id="header" class="main">
+			<div id="header_wrap" class="pr_none">
+				<!-- 메인 컨텐츠 가운데 정렬을 위한 pr_none 클래스 추가 -->
+
+				<!-- 검색어이미지 -->
+				<h1>
+					<a href="/index.htm" title="로고 - 홈으로 이동" class="mlog" data=""><img
+						width="300" height="199" src="./img/logo.png" alt="뮤직큐" /></a>
+				</h1>
+
+			</div>
+
+			<!-- 메뉴바 -->
+			<!-- navigation -->
+			<div id="nav">
+				<div class="nav_inner">
+				
+					<ul class="navigation clearfix">
+						<li class="navigation_list"><a href="여기에뮤직큐차트링크"
+							class="navigation_link">뮤직큐차트</a></li>
+						<li class="navigation_list"><a href="여기에테마음악링크"
+							class="navigation_link">테마음악</a></li>
+						<li class="navigation_list"><a href="여기에뮤직큐dJ링크"
+							class="navigation_link">뮤직큐DJ</a></li>
+						<li class="navigation_list"><a href="/MusicQProject/tkPurchase.html"
+							class="navigation_link">이용권구매</a></li>
+						<li class="navigation_list"><a href="여기에이벤트링크"
+							class="navigation_link">이벤트</a></li>
+						<li class="navigation_list"><a href="여기에공지사항링크"
+							class="navigation_link">공지사항</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- //navigation -->
+			<!-- /메뉴바 -->
+
+		</div>
+	</div>
+
+	<br>
+	<br>
+	<br>
+<div class= "all">
+	<div class="mypage">
+      <aside id="left">
+        <h2 id = "mp">My Page</h2>
+        <ul>
+          <li><a href="/MusicQProject/listCoupon" target="ifr">나의 쿠폰함</a></li>
+          <li><a href="/MusicQProject/listTicket" target="ifr">이용권 조회</a></li>
+          <li><a href="/MusicQProject/updateMem" target="ifr">회원정보 수정</a></li>
+        </ul>
+        <img id="headphone" src="./img/headphone.png" alt="headphone" width="100" height="100">
+      </aside>
+      </div>
+      
+      <div id = "main">
+        <div class="hi">
+         <img id="profile" src="./img/milk.jpg" alt="milk" width="100" height="100">
+         <h2>은지님 환영합니다</h2>
+        </div>
+        <div class="music">
+        <p align ="center">취향에 맞는 음악/ DJ플레이리스트</p>
+        </div>
+        <div class="coupon">
+        <p align ="center">보유큐폰함</p>
+        
+        <a href="/MusicQProject/listCoupon">>보러가기</a>
+        </div>
+      </div>
+     
+      
+      <div id="right">
+        <div class="grade">
+          <p align ="center">은지님의 등급은 VIP입니다</p>
+         </div>
+
+        <div class="ticket">
+        <p align ="center">보유이용권</p>
+        <a href="/MusicQProject/listTicket">>보러가기</a>
+        </div>
+      </div>
+      
+     </div>
+      
+    
+
+</body>
+
+</html>

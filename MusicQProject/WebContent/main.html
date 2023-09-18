@@ -1,0 +1,473 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html> 
+<html lang="ko">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>뮤직큐</title>
+
+<!-- 제이쿼리 스크립트  -->
+<script type="text/javascript"
+	src="/resource/script/web/common/jquery-1.9.1.min.js"></script>
+
+
+<!--외부 스타일 시트 -->
+<link rel="stylesheet"
+	href="https://cdnimg.melon.co.kr/static/web/resource/style/w1/av/i/qrguc73w.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnimg.melon.co.kr/static/web/resource/style/w1/ri/4/rw98ltzfrqdnf.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnimg.melon.co.kr/static/web/resource/style/w1/n4/y/b3ljt0mxu2fn6lq1q.css"
+	type="text/css" />
+
+</head>
+
+<script>
+		$(function() {
+			$("#header").load("./header.html");
+		});
+</script>
+	
+	
+<style>
+.chart {
+	display: flex;
+	flex-direction: column;
+}
+
+#song-chart {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#song-chart li {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+}
+
+#song-chart li:nth-child(odd) {
+	background-color: #fff;
+}
+
+#song-chart li a {
+	text-decoration: none;
+	color: #333;
+	margin-right: 10px;
+}
+
+#song-chart li:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
+
+
+</style>
+
+<body>
+	<div id="wrap">
+	
+	    <!--헤더.에이치티엠엘 로 옮김 .0509-->
+		<!--<div id="header"></div>-->
+	 
+		<div id="cont_wrap" class="clfix">
+			<div id="conts_section" class="pr_none">
+				<!-- 메인 컨텐츠 가운데 정렬을 위한 pr_none 클래스 추가 -->
+				<!-- contents -->
+				<div id="conts" class="clfix">
+					<!-- 최신앨범 -->
+					<div class="new_album">
+						<div class="section_na">
+							<div>
+								<div class="list_wrap">
+									<ul class="sub_list">
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/IMG- KO-1-1-비가오는날엔.jpg" alt="비가오는날엔" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>비스트</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/IMG- KO-1-1-어떻게이별까지사랑하겠어.jpg" alt="어떻게이별까지사랑하겠어" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>AKMU</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/IMG- KO-1-2-너의모든순간.jpg" alt="너의모든순간" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>성시경</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/ala.jpg" alt="" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>가수이름넣을곳</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/ala.jpg" alt="" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>가수이름넣을곳</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+										<!--한칸-->
+										<li>
+											<dl>
+												<dt>
+													<span class="none"></span>
+												</dt>
+
+												<dd class="img">
+													<span class="none">앨범이미지:</span> <span class="thum">
+														<img onerror="" width="156" height="156"
+														src="./img/ala.jpg" alt="" /> <span
+														class="bg_album_frame"></span>
+													</span>
+
+													<!-- //[DP] 재생 레이어 -->
+												</dd>
+												<dd class="singer">
+													<span class="none">가수명:</span>
+													<div class="ellipsis">
+														<a href="" title="" class="" data=""><span>가수이름넣을곳</span></a></span>
+													</div>
+												</dd>
+											</dl>
+										</li>
+										<!--/한칸-->
+
+
+
+									</ul>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- //최신앨범 -->
+
+					<!-- 큰 사진이벤트 -->
+					<div class="event">
+						<div class="event_default">
+							<a href="" class="image_type24" title=""> <img width="236"
+								height="315" src="./img/ala.jpg" alt="" /> <span
+								class="bg_album_frame"></span>
+							</a>
+						</div>
+					</div>
+					<!-- //이벤트 -->
+
+					<!-- 로그인 -->
+					<div class="id_wrap mt24">
+						<script type="text/javascript">
+							var html = '';
+							html = [
+									'<div class="login_wrap" id="gnbLoginDiv">',
+									'<div class="button_login">',
+									'<div class="top_area">',
+									'<p>뮤직큐를 로그인 하고 자유롭게 이용하세요.</p>',
+									'<a href="/MusicQProject/Join">회원가입</a>',
+									'</div>',
+									'<button type="button" class="btn_login" onclick="showLoginPopup()"><span class="odd_span">로그인</span></button>',
+									'</div>', '</div>' ].join('');
+							document.write(html);
+
+							function showLoginPopup() {
+								location.href = "login.html";
+							}
+						</script>
+
+						<div class="promotion_wrap">
+							<div class="promotion_default">
+								<a href="" title="로그인아래빈칸"> <img width="280" height="188"
+									src="./img/ala.jpg" alt="" /> <span class="bg_album_frame"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- //로그인 -->
+
+					<!-- 많이 봤어요 -->
+					<div class="hot_issue">
+						<h2>
+							<span class="title_link">인기 있어요</span><span class="txt_intro">지금
+								이슈가 되는 아티스트의 인기 컨텐츠입니다.</span>
+						</h2>
+
+						<!-- 리스트 1 -->
+
+						<ul class="sub_list">
+
+							<li class="issue_list04">
+
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/IMG- KO-1-1-비가오는날엔.jpg" alt="비가오는날엔" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">비스트</span>
+										</a>
+									</dt>
+								</dl>
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="./ListeningMusicController" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/IMG- KO-1-1-어떻게이별까지사랑하겠어.jpg" alt="" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">AKMU</span>
+										</a>
+									</dt>
+								</dl>
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="https://www.youtube.com/embed/Dbxzh078jr4" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/IMG- KO-1-2-너의모든순간.jpg" alt="" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">성시경</span>
+										</a>
+									</dt>
+								</dl>
+
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/ala.jpg" alt="" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">노래가수</span>
+										</a>
+									</dt>
+								</dl>
+
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/ala.jpg" alt="" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">노래가수</span>
+										</a>
+									</dt>
+								</dl>
+
+
+								<dl class="ml0">
+
+									<dd class="mov_area">
+										<a href="" title="" class="mlog link-thumb" data=""> <img
+											onerror="" src="./img/ala.jpg" alt="" /> <span
+											class="bg_album_frame"></span>
+										</a>
+									</dd>
+									<dt>
+										<a href="" title="" class="mlog link-thumb" data=""> <span
+											class="title">노래제목</span> <span class="ellipsis">노래가수</span>
+										</a>
+									</dt>
+								</dl>
+
+							</li>
+					</div>
+					<!-- //많이 봤어요 -->
+
+
+
+
+					<!-- 멜론차트 -->
+					<div class="chart">
+						<h2>실시간 음악차트 TOP 3</h2>
+						<ol id="song-chart">
+							<li><a href="#">곡 1</a> - 가수 1</li>
+							<li><a href="#">곡 2</a> - 가수 2</li>
+							<li><a href="#">곡 3</a> - 가수 3</li>
+							<li><a href="#">곡 4</a> - 가수 4</li>
+							<li><a href="#">곡 5</a> - 가수 5</li>
+							<li><a href="#">곡 6</a> - 가수 6</li>
+							<li><a href="#">곡 7</a> - 가수 7</li>
+							<li><a href="#">곡 8</a> - 가수 8</li>
+							<li><a href="#">곡 9</a> - 가수 9</li>
+							<li><a href="#">곡 10</a> - 가수 10</li>
+						</ol>
+					</div>
+					<!-- //멜론차트 -->
+
+
+					<!-- 공지사항 -->
+					<div class="notice">
+						<dl>
+							<dt class="label">
+								<a href="./img/ala.jpg" title="공지사항">공지사항</a>
+							</dt>
+
+
+							<dd>
+								<a href="./img/ala.jpg" title="0505공지" class="mlog" data="">05/05(목)
+									2023-05-05-14:30 공지 </a>
+							</dd>
+							<dd class="date">
+								2023.05.05 <br>
+								<br>
+								<br>
+							</dd>
+
+
+						</dl>
+					</div>
+					<!-- //공지사항 -->
+				</div>
+
+				<!-- //contents -->
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div id="footer" class="pr_none">
+			<div id="popNotice" class="wrap_pop_notice MELONUIT-738"></div>
+			<div class="footer_cont">
+				<div class="footer_menu"></div>
+
+				<p>
+					<span class="first"><strong>대덕인재개발원 </strong>&nbsp;&nbsp;대전
+						중구 오류동 846</span> <span>담임 : 배미숙</span> <span class="first">담임 전화
+						: 042-222-8201</span> <span>이메일 : <a
+						href="https://www.ddit.or.kr/room" class="btn_footer_mail">bms@naver.com</a></span>
+					<span>사업자 : 재단법인 대덕인재개발원</span> <span><a
+						href="https://www.ddit.or.kr/room" class="btn_footer_mail"
+						target="_blank">© 대덕인재Corp.</a></span>
+				</p>
+
+				<!-- //footer -->
+			</div>
+
+</body>
+
+</html>

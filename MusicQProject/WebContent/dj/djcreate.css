@@ -1,0 +1,288 @@
+
+form {
+	width: 800px;
+	height: auto; /* 필요에 따라 높이도 조정할 수 있습니다. */
+	border: 1px solid white; /* 필요에 따라 스타일도 추가할 수 있습니다. */
+	padding: 10px; /* 필요에 따라 여백도 조정할 수 있습니다. */
+	margin-left: 30px;
+	
+}
+
+
+#text1{
+font-family: 'Fira Sans', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-size: 25px;
+margin-bottom: 30px;
+
+}
+
+#text2{
+font-family: 'Fira Sans', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-size: 18px;
+  
+
+}
+
+#text3{
+font-family: 'Fira Sans', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-size: 15px;
+line-height: 1.5;
+
+}
+
+/* profile */
+.profile {
+	width: 100%;
+	border-top: 2px solid #bdbdbd;
+	border-bottom: 2px solid #bdbdbd;
+	font-family: "NanumGothic", sans-serif;
+}
+
+.profile tr {
+	border-top: 1px solid #cdcdcd;
+}
+
+.profile tr:first-child {
+	border-top: 0;
+}
+
+.profile th {
+	background: #f6f6f6;
+	width: 20%;
+	text-align: left;
+	padding-left: 3%
+}
+
+.profile td {
+	text-align: left;
+	background: #fff;
+	padding-top: 1% !important;
+	padding-bottom: 1% !important;
+	color: #5c5c5c;
+	font-size: 15px;
+	line-height: 26px;
+	padding-left: 3%
+}
+
+.profile input[type="text"], .profile select {
+	margin-right: 1%;
+	color: #5c5c5c;
+	line-height: 12px;
+	font-size: 14px;
+	font-family: "NanumGothic", sans-serif;
+	background: #f6f6f6;
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	padding: 1%;
+}
+
+.profile select {
+	padding: 0.9%;
+}
+
+.profile textarea {
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	width: 94%;
+	height: 100px;
+	background: #f6f6f6;
+	padding: 1%
+}
+
+.profile .wid53 {
+	width: 49%;
+}
+
+.profile .wid72 {
+	width: 71%;
+}
+
+/* pageInfo */
+.pageInfo {
+	width: 100%;
+	/* border-top: 2px solid #bdbdbd; */
+	border-bottom: 2px solid #bdbdbd;
+	font-family: "NanumGothic", sans-serif;
+}
+
+.pageInfo tr {
+	border-top: 1px solid #cdcdcd;
+}
+
+.pageInfo tr:first-child {
+	border-top: 0;
+}
+
+.pageInfo th {
+	background: #f6f6f6;
+	width: 20%;
+	text-align: left;
+	padding-left: 3%
+}
+
+.pageInfo td {
+	text-align: left;
+	background: #fff;
+	padding-top: 1% !important;
+	padding-bottom: 1% !important;
+	color: #5c5c5c;
+	font-size: 15px;
+	line-height: 26px;
+	padding-left: 3%
+}
+
+.pageInfo input[type="text"], .pageInfo select {
+	margin-right: 1%;
+	color: #5c5c5c;
+	line-height: 12px;
+	font-size: 14px;
+	font-family: "NanumGothic", sans-serif;
+	background: #f6f6f6;
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	padding: 1%;
+}
+
+.pageInfo select {
+	padding: 0.9%;
+}
+
+.pageInfo textarea {
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	width: 90%;
+	height: 100px;
+	background: #f6f6f6;
+	padding: 1%
+}
+
+.pageInfo .wid10 {
+	width: 10%;
+}
+
+.pageInfo .wid20 {
+	width: 20%;
+}
+
+.pageInfo .wid30 {
+	width: 30%;
+}
+
+.pageInfo .wid53 {
+	width: 49%;
+}
+
+.pageInfo .wid60 {
+	width: 90%;
+}
+
+
+/* attachfile */
+.attachfile {
+	width: 100%;
+	/* border-top: 2px solid #bdbdbd; */
+	
+	border-bottom: 2px solid #bdbdbd;
+	font-family: "NanumGothic", sans-serif;
+}
+
+.attachfile {
+	border-top: 0px solid #cdcdcd;
+}
+
+.attachfile tr:first-child {
+	border-top: 0;
+}
+
+.attachfile th {
+	background: #f6f6f6;
+	width: 20%;
+	margin-bottom: 0px !important;
+	text-align:center !important;
+/* padding-left: 3%; */
+	font-size: 13px;
+}
+
+.attachfile td {
+	text-align: left;
+	background: #fff;
+	padding-top: 1% !important;
+	padding-bottom: 1% !important;
+	color: #5c5c5c;
+	font-size: 15px;
+	line-height: 26px;
+	padding-left: 3%
+}
+
+
+.attachfile .wid53 {
+	width: 49%;
+}
+
+.attachfile .wid60 {
+	width: 90%;
+}
+
+
+/* 제출 버튼 */
+
+.button-container {
+	display: flex !important;
+	/* justify-content: flex-start; !important; */ 
+	margin-top : 10px;
+	margin-left : 300px;
+	
+
+	text-align: center !important;
+}
+
+.btnsubmit a {
+	display: inline-block !important;	
+	padding: 0.7em 1.5em 0.8em 1.5em;
+	font-size: 16px;
+	color: #201f1f;
+	border: 1px #cdcdcd77;
+	border-radius: 2em;
+	background: #cdcdcd77;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+	text-align: center !important;
+    vertical-align: middle !important;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.btnsubmit a:hover {
+	background: rgb(0, 206, 60);
+	color: #fff;
+}
+
+.btnreset a {
+	display: inline-block !important;	
+	padding: 0.7em 1.5em 0.8em 1.5em;
+	font-size: 16px;
+	color: #201f1f;
+	border: 1px solid #cdcdcd77;
+	border-radius: 2em;
+	background: #cdcdcd77;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+	text-align: center !important;
+    vertical-align: middle !important;
+    text-decoration: none;
+}
+
+.btnreset a:hover {
+	background: rgb(0, 206, 60);
+	color: #fff;
+	
+	
+	
+	
+	
+	
+}
+

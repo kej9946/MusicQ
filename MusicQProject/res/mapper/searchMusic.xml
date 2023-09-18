@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="theme">
+
+
+<!--  불러오는 값 : ① M_COUNTRY, ② M_GENRE, ③ M_NM, ④ M_SINGER, ⑤ M_ALBUM, ⑥ M_LYRIC1  -->
+
+	<!-- 장르로 검색하는 쿼리 -->
+	<select id="selectByGenre" parameterType="musicq.vo.MusicVO">
+		SELECT M_COUNTRY, M_GENRE, M_NM, M_SINGER, M_ALBUM, M_LYRIC1
+		FROM MUSIC
+		WHERE M_GENRE = #{mGenre}
+	</select>
+
+	<!-- 가수로 음악 검색 -->
+	<select id="selectBySinger" parameterType="musicq.vo.MusicVO">
+		SELECT M_COUNTRY, M_GENRE, M_NM, M_SINGER, M_ALBUM, M_LYRIC1
+		FROM MUSIC
+		WHERE M_SINGER = #{mSinger}
+	</select>
+
+	<!-- 제목으로 음악 검색 -->
+	<select id="selectByName" parameterType="musicq.vo.MusicVO">
+		SELECT M_COUNTRY, M_GENRE, M_NM, M_SINGER, M_ALBUM, M_LYRIC1
+		FROM MUSIC
+		WHERE M_NM LIKE '%' || #{MNm} || '%'
+	</select>
+
+
+	<!-- 동영상주소로 이미지 경로 가져오는 쿼리 -->
+	<select id="selectImgPath" resultType="String"
+		parameterType="musicq.vo.MusicVO">
+
+		SELECT DISTINCT msq_img.img_path FROM music
+		INNER JOIN m_img ON music.m_cd=m_img.m_cd
+		INNER JOIN msq_img ON m_img.m_img_cd=msq_img.mgq_img_cd
+		WHERE music.m_cd = #{mCd}
+	</select>
+
+	<!-- 전체 이미지 가져오기  -->
+	<select id="selectImgAll" parameterType="musicq.vo.MsqImgVO">
+		select * from msq_img;
+	</select>
+    
+    
+    <!-- 테마음악 검색 -->
+    <!-- 테마 키워드로 검색 -->    
+    <select id="selectByPlace" parameterType="musicq.vo.MusicVO">
+		SELECT M_COUNTRY, M_GENRE, M_NM, M_SINGER, M_ALBUM, M_LYRIC1
+		FROM MUSIC
+		WHERE M_PLACE LIKE '%' || #{mPlace} || '%'
+	</select>
+	
+    <!-- 유사곡 검색-->     
+    <select id="selectBySimlar" parameterType="musicq.vo.MusicVO">
+		SELECT M_COUNTRY, M_GENRE, M_NM, M_SINGER, M_ALBUM, M_LYRIC1
+		FROM MUSIC
+		WHERE M_SIMLARCD = #{mCd}
+	</select>
+
+
+<resultMap type="musicq.vo.MusicVO" id="SearchMusicMap">
+		<result property="mCd" column="m_cd" />
+		<result property="mReleDt" column="m_rele_dt" />
+		<result property="mNm" column="m_nm" />
+		<result property="mSinger" column="m_singer" />
+		<result property="mGenre" column="mCountry" />
+		<result property="mAlbum" column="m_album" />
+		<result property="mLyrIc1" column="m_lyrIc1" />
+		<result property="mSimlarCd" column="m_simlarCd" />
+		<result property="mPlace" column="m_place" />
+		
+	</resultMap>
+	<select id="searchMusic" resultMap="SearchMusicMap">
+	
+		select * from member where 1=1
+			
+			<if test="m_nm != null and m_nm != ''">
+				and m_nm = #{mNm}
+			</if>
+			
+			<if test="m_singer != null and m_singer != ''">
+				and m_singer = #{mSinger}
+			</if>
+			
+			<if test="m_genre != null and m_genre != ''">
+				and m_genre = #{mGenre}
+			</if>
+			
+			
+	
+	</select>
+	 
+
+
+
+
+
+
+
+	<!-- <resultMap type="musicq.vo.DjPlayListVO" id="djPlayListMap"> <result 
+		property="memId" column=" mem_id" /> <result property="djPlaylistCd" column="dj_playlist_cd" 
+		/> <result property="mCd" column="m_cd" /> <result property="djPlaylistHit" 
+		column="dj_playlist_hit" /> </resultMap> -->
+</mapper>
+	

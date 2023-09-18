@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	
+
+<insert id="insert" parameterType="musicq.vo.MemberVO">
+	
+		insert into member
+		(  mem_id ,mem_pw , mem_tel, mem_addr1, mem_addr2, mem_birth, mem_email,
+		mem_gender, mem_mbti, mem_keywd, 
+		mem_genre, mem_join_dt, mem_tk_yn,
+		mem_tk_bgn, mem_quit_yn, mem_admin_yn ,mem_tk_end ,mem_name)
+		values (  #{memId}, #{memPw}, #{memTel}, #{memAddr1}, #{memAddr2},#{memBirth} ,#{memEmail}
+	,#{memGender},#{memMbti},#{memKeywd},#{memGenre}, sysdate ,#{memTkYn},#{memTkBgn}
+	,#{memQuitYn},#{memAdminYn},#{memTkEnd},#{memName} )
+	
+	</insert>
+	
+	<update id="update" parameterType="musicq.vo.MemberVO">
+		
+		update member
+		set
+		     mem_id = #{memId}
+		    , mem_pw = #{memPw}
+			,mem_tel = #{memTel}
+		 	 ,mem_email = #{memEmail}
+		 	 ,mem_name=#{memName}
+		 	  ,mem_birth=#{memBirth}
+		 	   ,mem_gender=#{memGender}
+		 	    ,mem_addr1=#{memAddr1}
+		 	 
+		 	 
+		where mem_id = #{memId}
+	
+	</update>
+	
+	<delete id="delete" >
+	
+		delete from member where mem_id = #{memId}
+	
+	</delete>
+	
+	<select id="getAll" resultType="musicq.vo.MemberVO">
+		select * from member
+	</select>
+	
+	<select id="getPw" resultType="String">
+       select mem_pw from member WHERE mem_email= #{memEmail}
+	</select>
+	
+	
+	<select id="get" resultType="musicq.vo.MemberVO">
+		
+		select *
+		 from member
+		 where mem_id = #{memId}
+	</select>
+	
+	<select id="check" resultType="int">
+		
+		select count(*) as cnt
+		 from member
+		 where mem_id = #{memId}
+	
+	</select>
+
+	<resultMap type="musicq.vo.MemberVO" id="memMap">
+		<result property="memId" column="mem_id" />
+		<result property="memPw" column="mem_pw" />
+		<result property="memName" column="mem_name" />
+		<result property="memTel" column="mem_tel" />
+		
+	</resultMap>
+	<select id="search" resultMap="memMap">
+	
+		select * from member where 1=1
+			
+			<if test="memId != null and memId != ''">
+				and mem_id = #{memId}
+			</if>
+			
+			<if test="memName != null and memName != ''">
+				and mem_name = #{memName}
+			</if>
+			
+			<if test="memTel != null and memTel != ''">
+				and mem_tel = #{memTel}
+			</if>
+			
+			
+	
+	</select>
+	 
+	 
+	  <select id="loginChk" parameterType="map" resultType="string">
+  		select mem_id
+  			from member
+  		where mem_id = #{uId} and mem_pw = #{uPw}
+  	</select>
+</mapper>
